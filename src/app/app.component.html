@@ -1,4 +1,2 @@
-<div class="container">
-  <app-cockpit></app-cockpit>
-  <router-outlet></router-outlet>
-</div>
+<app-quiz-header (createClicked)="onCreateClicked($event)"></app-quiz-header>
+<app-quiz-questions [questions]="questions"></app-quiz-questions>

@@ -1,0 +1,12 @@
+<h1>Quiz time!</h1>
+<form #quizForm="ngForm" (ngSubmit)="onSubmit(quizForm)">
+  <select id="categorySelect" name="categorySelect" ngModel required>
+    <option value="" disabled>Select category</option>
+    <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+  </select>
+  <select id="difficultySelect" name="difficultySelect" ngModel required>
+    <option value="" disabled>Select difficulty</option>
+    <option *ngFor="let difficulty of difficulties" [value]="difficulty">{{ difficulty }}</option>
+  </select>
+  <button id="createBtn" type="submit" [disabled]="quizForm.invalid">Create</button>
+</form>

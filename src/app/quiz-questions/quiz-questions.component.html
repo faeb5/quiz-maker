@@ -1,0 +1,11 @@
+<app-quiz-question
+  *ngFor="let question of questions"
+  [question]="question"
+></app-quiz-question>
+<button
+  type="submit"
+  *ngIf="isAllQuestionsAnswered()"
+  (click)="onClick()"
+>
+  Submit
+</button>

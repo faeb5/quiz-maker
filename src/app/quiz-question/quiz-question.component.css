@@ -1,0 +1,32 @@
+.answer {
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 3px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.answer:hover {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.unselected {
+  background-color: inherit;
+  color: black;
+}
+
+.selected {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.correct {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.incorrect {
+  background-color: darkred;
+  color: black;
+}
