@@ -14,7 +14,7 @@ export class QuizQuestionComponent implements OnInit {
   }
 
   shuffleAnswers(question: Question): void {
-    question.answers.sort((a, b) => 0.5 - Math.random());
+    question.answers.sort(() => 0.5 - Math.random());
   }
 
   onClick(answer: string) {
