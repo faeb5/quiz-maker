@@ -4,9 +4,9 @@
     type="button"
     *ngFor="let answer of question.answers"
     [ngClass]="{
-      'answer': true,
-      'unselected': !isSelectedAnswer(answer),
-      'selected': isSelectedAnswer(answer)
+      answer: true,
+      unselected: !isSelectedAnswer(answer),
+      selected: isSelectedAnswer(answer)
     }"
     (click)="onClick(answer)"
   >

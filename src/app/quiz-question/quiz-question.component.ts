@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Question} from "./question.model";
+import { Component, Input, OnInit } from '@angular/core';
+import { Question } from './question.model';
 
 @Component({
   selector: 'app-quiz-question',
   templateUrl: './quiz-question.component.html',
-  styleUrls: ['./quiz-question.component.css']
+  styleUrls: ['./quiz-question.component.css'],
 })
 export class QuizQuestionComponent implements OnInit {
   @Input() question: Question = {} as Question;
