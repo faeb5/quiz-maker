@@ -1,0 +1,15 @@
+<h1>Results</h1>
+<app-quiz-solution
+  *ngFor="let question of questions"
+  [question]="question"
+></app-quiz-solution>
+<div
+  [ngClass]="{
+    red: isRed(),
+    yellow: isYellow(),
+    green: isGreen()
+  }"
+>
+  <p>You scored {{ score }} out of {{ questions.length }}</p>
+</div>
+<button type="button" [routerLink]="['/quiz']">Create new quiz</button>

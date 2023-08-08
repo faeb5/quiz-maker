@@ -1,0 +1,14 @@
+<p>{{ question.text }}</p>
+<div>
+  <button
+    type="button"
+    *ngFor="let answer of question.answers"
+    [ngClass]="{
+      answer: true,
+      correct: isCorrectAnswer(answer),
+      incorrect: isIncorrectAnswer(answer)
+    }"
+  >
+    {{ answer }}
+  </button>
+</div>

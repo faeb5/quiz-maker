@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { QuizHeaderComponent } from './quiz-header/quiz-header.component';
 import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.component';
 import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
+import { QuizSolutionComponent } from './quiz-solution/quiz-solution.component';
+import { QuizSolutionsComponent } from './quiz-solutions/quiz-solutions.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
     QuizHeaderComponent,
     QuizQuestionsComponent,
     QuizQuestionComponent,
+    QuizSolutionsComponent,
+    QuizSolutionComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

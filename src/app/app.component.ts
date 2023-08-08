@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Question } from './quiz-question/question.model';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,4 @@ import { Question } from './quiz-question/question.model';
 })
 export class AppComponent {
   title = 'quiz-maker';
-  questions: Question[] = [];
-
-  onCreateClicked(questions: Question[]) {
-    this.questions = questions;
-  }
 }

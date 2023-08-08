@@ -14,20 +14,18 @@ export class TriviaService {
 
   constructor(private http: HttpClient) {}
 
-  getCategories(): Observable<TriviaCategory[]> {
-    return this.http
-      .get<TriviaCategoriesResponse>(`${this.baseUrl}/api_category.php`)
-      .pipe(map((response) => response.trivia_categories));
+  getCategories(): Observable<TriviaCategoriesResponse> {
+    return this.http.get<TriviaCategoriesResponse>(
+      `${this.baseUrl}/api_category.php`,
+    );
   }
 
   getQuestions(
     category: number,
     difficulty: string,
-  ): Observable<TriviaQuestion[]> {
-    return this.http
-      .get<TriviaQuestionsResponse>(
-        `${this.baseUrl}/api.php?amount=5&category=${category}&difficulty=${difficulty}`,
-      )
-      .pipe(map((response) => response.results));
+  ): Observable<TriviaQuestionsResponse> {
+    return this.http.get<TriviaQuestionsResponse>(
+      `${this.baseUrl}/api.php?amount=5&category=${category}&difficulty=${difficulty}`,
+    );
   }
 }

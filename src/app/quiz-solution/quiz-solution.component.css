@@ -1,4 +1,6 @@
 .answer {
+  background-color: inherit;
+  color: black;
   border: 1px solid black;
   border-radius: 3px;
   margin: 3px;
@@ -6,17 +8,12 @@
   cursor: pointer;
 }
 
-.answer:hover {
-  background-color: blue;
+.correct {
+  background-color: seagreen;
   color: white;
 }
 
-.unselected {
-  background-color: inherit;
+.incorrect {
+  background-color: orangered;
   color: black;
-}
-
-.selected {
-  background-color: blue;
-  color: white;
 }
