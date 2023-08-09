@@ -14,7 +14,11 @@ export class QuizQuestionComponent implements OnInit {
   }
 
   shuffleAnswers(question: Question): void {
-    question.answers.sort(() => 0.5 - Math.random());
+    const answers = question.answers;
+    for (let i = answers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [answers[i], answers[j]] = [answers[j], answers[i]];
+    }
   }
 
   onClick(answer: string): void {
