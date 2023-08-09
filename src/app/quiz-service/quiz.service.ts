@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Question } from './question.model';
-import { TriviaService } from '../trivia/trivia.service';
-import { TriviaQuestion } from '../trivia/trivia-question.model';
+import { TriviaService } from '../trivia-service/trivia.service';
+import { TriviaQuestion } from '../trivia-service/trivia-question.model';
 import { Category } from './category.model';
-import { TriviaCategory } from '../trivia/trivia-category.model';
+import { TriviaCategory } from '../trivia-service/trivia-category.model';
 import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
-import { TriviaQuestionsResponse } from '../trivia/trivia-questions-response.model';
-import { TriviaCategoriesResponse } from '../trivia/trivia-categories-response.model';
+import { TriviaQuestionsResponse } from '../trivia-service/trivia-questions-response.model';
+import { TriviaCategoriesResponse } from '../trivia-service/trivia-categories-response.model';
 
 @Injectable({
   providedIn: 'root',
