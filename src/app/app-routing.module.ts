@@ -4,7 +4,7 @@ import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.componen
 import { QuizSolutionsComponent } from './quiz-solutions/quiz-solutions.component';
 
 const routes: Routes = [
-  { path: 'quiz', component: QuizQuestionsComponent },
+  { path: '', component: QuizQuestionsComponent },
   { path: 'solution', component: QuizSolutionsComponent },
   { path: '**', component: QuizQuestionsComponent },
 ];

@@ -24,7 +24,7 @@ export class QuizSolutionsComponent implements OnInit, OnDestroy {
       next: (questions: Question[]) => {
         this.questions = questions;
         if (this.questions.length === 0) {
-          this.router.navigate(['/quiz']);
+          this.router.navigate(['/']);
         }
         this.calculateScore();
       },
