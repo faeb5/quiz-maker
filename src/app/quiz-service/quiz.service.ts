@@ -12,8 +12,10 @@ import { TriviaCategoriesResponse } from '../trivia-service/trivia-categories-re
   providedIn: 'root',
 })
 export class QuizService {
-  private difficulties = ['easy', 'medium', 'hard'];
-  private questions$ = new BehaviorSubject<Question[]>([]);
+  private difficulties: string[] = ['easy', 'medium', 'hard'];
+  private questions$: BehaviorSubject<Question[]> = new BehaviorSubject<
+    Question[]
+  >([]);
 
   constructor(private triviaService: TriviaService) {}
 
