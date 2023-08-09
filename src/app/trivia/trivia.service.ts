@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
-import { TriviaCategory } from './trivia-category.model';
-import { TriviaQuestion } from './trivia-question.model';
+import { Observable } from 'rxjs';
 import { TriviaCategoriesResponse } from './trivia-categories-response.model';
 import { TriviaQuestionsResponse } from './trivia-questions-response.model';
 

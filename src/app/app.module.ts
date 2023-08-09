@@ -10,6 +10,7 @@ import { QuizQuestionsComponent } from './quiz-questions/quiz-questions.componen
 import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
 import { QuizSolutionComponent } from './quiz-solution/quiz-solution.component';
 import { QuizSolutionsComponent } from './quiz-solutions/quiz-solutions.component';
+import { DecodeHtmlPipe } from './pipe/decode-html.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { QuizSolutionsComponent } from './quiz-solutions/quiz-solutions.componen
     QuizQuestionComponent,
     QuizSolutionsComponent,
     QuizSolutionComponent,
+    DecodeHtmlPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

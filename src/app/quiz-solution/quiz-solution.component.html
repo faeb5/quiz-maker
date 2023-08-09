@@ -1,4 +1,4 @@
-<p>{{ question.text }}</p>
+<p>{{ question.text | decodeHtml }}</p>
 <div>
   <button
     type="button"
@@ -9,6 +9,6 @@
       incorrect: isIncorrectAnswer(answer)
     }"
   >
-    {{ answer }}
+    {{ answer | decodeHtml }}
   </button>
 </div>
