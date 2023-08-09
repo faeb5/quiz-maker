@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Question } from '../quiz-service/question.model';
 import { QuizService } from '../quiz-service/quiz.service';
 import { Subscription } from 'rxjs';
+import { Category } from '../quiz-service/category.model';
 
 @Component({
   selector: 'app-quiz-questions',
@@ -9,16 +10,26 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./quiz-questions.component.css'],
 })
 export class QuizQuestionsComponent implements OnInit, OnDestroy {
+  categories: Category[] = [];
+  difficulties: string[] = [];
   questions: Question[] = [];
-  questionsSubscription: Subscription | undefined = undefined;
+  questionsSubscription: Subscription | undefined;
+  errorMessage: string | undefined;
 
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
+    this.difficulties = this.quizService.getDifficulties();
+
+    this.quizService.getCategories().subscribe({
+      next: (categories: Category[]) => (this.categories = categories),
+      error: () => (this.errorMessage = 'Unable to load categories'),
+    });
+
     this.quizService.getQuestions().next([]);
     this.questionsSubscription = this.quizService.getQuestions().subscribe({
       next: (questions: Question[]) => (this.questions = questions),
-      error: () => console.error('Unable to load questions'),
+      error: () => (this.errorMessage = 'Unable to load questions'),
     });
   }
 

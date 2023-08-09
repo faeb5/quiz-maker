@@ -1,4 +1,8 @@
-<app-quiz-header></app-quiz-header>
+<div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+<app-quiz-header
+  [difficulties]="difficulties"
+  [categories]="categories"
+></app-quiz-header>
 <app-quiz-question
   *ngFor="let question of questions"
   [question]="question"

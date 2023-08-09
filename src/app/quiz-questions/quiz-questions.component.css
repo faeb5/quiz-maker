@@ -2,3 +2,10 @@ button {
   margin: 10px 0;
   padding: 5px;
 }
+
+.error {
+  background-color: red;
+  color: black;
+  padding: 10px;
+  margin: 10px;
+}
