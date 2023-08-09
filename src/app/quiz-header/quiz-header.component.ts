@@ -10,23 +10,19 @@ import { Category } from '../quiz-service/category.model';
 })
 export class QuizHeaderComponent implements OnInit {
   categories: Category[] = [];
-  difficulties = ['easy', 'medium', 'hard'];
+  difficulties: string[] = ['easy', 'medium', 'hard'];
 
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
     this.quizService
       .getCategories()
-      .subscribe((categories) => (this.categories = categories));
+      .subscribe((categories: Category[]) => (this.categories = categories));
   }
 
-  onSubmit(quizForm: NgForm) {
-    const category = quizForm.value.categorySelect as number;
-    const difficulty = quizForm.value.difficultySelect as string;
-    this.quizService
-      .createQuestions(category, difficulty)
-      .subscribe((questions) =>
-        this.quizService.onQuestionsCreated.emit(questions),
-      );
+  onSubmit(quizForm: NgForm): void {
+    const category: number = quizForm.value.categorySelect as number;
+    const difficulty: string = quizForm.value.difficultySelect as string;
+    this.quizService.createQuestions(category, difficulty);
   }
 }

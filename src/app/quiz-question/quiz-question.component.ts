@@ -17,11 +17,11 @@ export class QuizQuestionComponent implements OnInit {
     question.answers.sort(() => 0.5 - Math.random());
   }
 
-  onClick(answer: string) {
+  onClick(answer: string): void {
     this.question.selected_answer = answer;
   }
 
-  isSelectedAnswer(answer: string) {
+  isSelectedAnswer(answer: string): boolean {
     return answer === this.question.selected_answer;
   }
 }

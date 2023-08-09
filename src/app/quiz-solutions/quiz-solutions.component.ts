@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Question } from '../quiz-service/question.model';
 import { QuizService } from '../quiz-service/quiz.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-quiz-solutions',
   templateUrl: './quiz-solutions.component.html',
   styleUrls: ['./quiz-solutions.component.css'],
 })
-export class QuizSolutionsComponent implements OnInit {
+export class QuizSolutionsComponent implements OnInit, OnDestroy {
   questions: Question[] = [];
   score: number = 0;
+  questionsSubscription: Subscription | undefined = undefined;
 
   constructor(
     private quizService: QuizService,
@@ -18,16 +20,27 @@ export class QuizSolutionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.questions = this.quizService.getQuestions();
-    if (this.questions.length === 0) {
-      this.router.navigate(['/quiz']);
-    }
-    this.calculateScore();
+    this.questionsSubscription = this.quizService.getQuestions().subscribe({
+      next: (questions: Question[]) => {
+        this.questions = questions;
+        if (this.questions.length === 0) {
+          this.router.navigate(['/quiz']);
+        }
+        this.calculateScore();
+      },
+      error: () => console.error('unable to load questions'),
+    });
   }
 
-  private calculateScore() {
+  ngOnDestroy(): void {
+    if (this.questionsSubscription) {
+      this.questionsSubscription.unsubscribe();
+    }
+  }
+
+  private calculateScore(): void {
     this.questions.forEach(
-      (question) => (this.score += this.getScore(question)),
+      (question: Question) => (this.score += this.getScore(question)),
     );
   }
 

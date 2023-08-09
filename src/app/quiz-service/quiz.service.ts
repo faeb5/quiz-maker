@@ -1,43 +1,43 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Question } from './question.model';
 import { TriviaService } from '../trivia/trivia.service';
 import { TriviaQuestion } from '../trivia/trivia-question.model';
 import { Category } from './category.model';
 import { TriviaCategory } from '../trivia/trivia-category.model';
-import { map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
+import { TriviaQuestionsResponse } from '../trivia/trivia-questions-response.model';
+import { TriviaCategoriesResponse } from '../trivia/trivia-categories-response.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuizService {
-  questions: Question[] = [];
+  private questions$: BehaviorSubject<Question[]> = new BehaviorSubject<
+    Question[]
+  >([]);
 
   constructor(private triviaService: TriviaService) {}
 
-  onQuestionsCreated = new EventEmitter<Question[]>();
-
-  createQuestions(
-    category: number,
-    difficulty: string,
-  ): Observable<Question[]> {
-    return this.triviaService
+  createQuestions(category: number, difficulty: string): void {
+    this.triviaService
       .getQuestions(category, difficulty)
-      .pipe(map((response) => response.results.map(this.parseTriviaQuestion)));
+      .pipe(
+        map((response: TriviaQuestionsResponse) =>
+          response.results.map(this.parseTriviaQuestion),
+        ),
+      )
+      .subscribe((questions: Question[]) => this.questions$.next(questions));
   }
 
-  saveQuestions(questions: Question[]) {
-    this.questions = questions.slice();
-  }
-
-  getQuestions(): Question[] {
-    return this.questions.slice();
+  getQuestions(): Subject<Question[]> {
+    return this.questions$;
   }
 
   getCategories(): Observable<Category[]> {
     return this.triviaService
       .getCategories()
       .pipe(
-        map((response) =>
+        map((response: TriviaCategoriesResponse) =>
           response.trivia_categories.map(this.parseTriviaCategory),
         ),
       );

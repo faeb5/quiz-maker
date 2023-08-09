@@ -8,7 +8,7 @@ import { TriviaQuestionsResponse } from './trivia-questions-response.model';
   providedIn: 'root',
 })
 export class TriviaService {
-  readonly baseUrl = 'https://opentdb.com';
+  readonly baseUrl: string = 'https://opentdb.com';
 
   constructor(private http: HttpClient) {}
 
