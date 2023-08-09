@@ -28,7 +28,9 @@ export class QuizService {
       .getQuestions(category, difficulty)
       .pipe(
         map((response: TriviaQuestionsResponse) =>
-          response.results.map(this.parseTriviaQuestion),
+          response.results.map((triviaQuestion: TriviaQuestion) =>
+            this.parseTriviaQuestion(triviaQuestion),
+          ),
         ),
       )
       .subscribe((questions: Question[]) => this.questions$.next(questions));
@@ -58,11 +60,19 @@ export class QuizService {
   private parseTriviaQuestion(triviaQuestion: TriviaQuestion): Question {
     return {
       text: triviaQuestion.question,
-      answers: [
+      answers: this.shuffleAnswers([
         triviaQuestion.correct_answer,
         ...triviaQuestion.incorrect_answers,
-      ],
+      ]),
       correct_answer: triviaQuestion.correct_answer,
     };
+  }
+
+  private shuffleAnswers(answers: string[]): string[] {
+    for (let i = answers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [answers[i], answers[j]] = [answers[j], answers[i]];
+    }
+    return answers;
   }
 }
